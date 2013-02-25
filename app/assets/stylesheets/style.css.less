@@ -1,0 +1,87 @@
+@transition-speed: 1s;
+@block-size: 120px;
+@flip-degrees: 180deg;
+
+body {
+  background: black;
+  padding: 0;
+  margin: 0;
+}
+
+// random movement van vakken als er niks gebeurt, ze gaan een stukje open...
+// spinning loading block
+
+ul.squares {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+
+  li {
+    display: block;
+    float: left;
+    width: @block-size;
+    height: @block-size;
+    margin: 2px;
+    position: relative;
+    padding: 0px;
+
+    -webkit-perspective: 300px;
+    -moz-perspective: 600px;
+  }
+
+  li .front {
+    background: -webkit-linear-gradient(45deg,  #1e5799 0%,#2877cc 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+
+    -webkit-transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+
+    -moz-transform: rotateY(0deg);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+
+    -o-transition: all @transition-speed ease-in-out;
+    -ms-transition: all @transition-speed ease-in-out;
+    -moz-transition: all @transition-speed ease-in-out;
+    -webkit-transition: all @transition-speed ease-in-out;
+    transition: all @transition-speed ease-in-out;
+  }
+
+  li.flip .front {
+      -webkit-transform: rotateY(@flip-degrees);
+      -moz-transform: rotateY(@flip-degrees);
+  }
+
+  li .back {
+    background: -webkit-linear-gradient(45deg,  #2877cc 100%, #1e5799 0%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+
+    -webkit-transform: rotateY(-@flip-degrees);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+
+    -moz-transform: rotateY(-@flip-degrees);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+
+    -o-transition: all @transition-speed ease-in-out;
+    -ms-transition: all @transition-speed ease-in-out;
+    -moz-transition: all @transition-speed ease-in-out;
+    -webkit-transition: all @transition-speed ease-in-out;
+    transition: all @transition-speed ease-in-out;
+  }
+
+  li.flip .back {
+      -webkit-transform: rotateY(0deg);
+      -moz-transform: rotateY(0deg);
+  }
+}
